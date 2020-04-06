@@ -2,13 +2,46 @@
 
 namespace App\Controllers;
 
-class Pages {
+use App\Controllers\ControllerCore;
+use App\Models\User;
+
+class Pages extends ControllerCore {
+
+    public function __construct() {
+        parent::__construct();
+    }
+
     public function index() {
-        require PATH_VIEW."home.php";
+        if($this->isLogged()) {
+            header("Location:".BASE_URL."/profile");
+        } else {
+            $this->addTitlePage("Home");
+            $this->loadView("home");
+        }
     }
 
     public function profile() {
-        require PATH_VIEW."profile.php";
+        if(!$this->isLogged()) {
+            header("Location:". BASE_URL . "/");
+        } else {
+            $user = unserialize($_SESSION["user"]);
+
+            $this->addTitlePage("Profile - ".$user->getName());
+
+            $this->addDataView("avatar", $user->getUrl_image());
+            $this->addDataView("name", $user->getName());
+            $this->addDataView("description", $user->getDescription());
+            $this->addDataView("email", $user->getEmail());
+            $this->addDataView("github", $user->getGithub());
+            $this->addDataView("office", $user->getOffice());
+            $this->addDataView("dt_birth", $user->getDt_birth());
+            $this->addDataView("phone", $user->getPhone());
+            $this->addDataView("city", $user->getCity());
+            $this->addDataView("bio", $user->getBio());
+
+            $this->loadView("profile");
+
+        }
     }
 
     public function erro404() {
