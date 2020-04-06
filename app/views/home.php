@@ -1,11 +1,3 @@
-<?php
-    use App\Models\User;
-    
-    if(!empty($_SESSION['user'])) {
-      header("Location:" . BASE_URL . "/profile");
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -31,17 +23,18 @@
         <div class="col-md-12 col-sm-12">
            <div class="login-form">
                <img src="https://image.flaticon.com/icons/svg/25/25231.svg" alt="logo" height="150px" width="150px"/>
-              <form action="<?=BASE_URL?>/login" method="POST">
-                 <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" class="form-control" name="email" placeholder="Email">
-                 </div>
-                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" name="password" placeholder="Password">
-                 </div>
-                 <button type="submit" class="btn btn-black">Login</button>
-              </form>
+               <form action="<?=BASE_URL?>/login" method="POST">
+                  <div class="form-group">
+                     <label>Email</label>
+                     <input type="email" class="form-control" name="email" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                     <label>Password</label>
+                     <input type="password" class="form-control" name="password" placeholder="Password">
+                  </div>
+                  <button type="submit" class="btn btn-black">Login</button>
+               <?= isset($_SESSION[ERROR]) ? "<div class=\"alert alert-danger\" role=\"alert\">".$_SESSION[ERROR]."</div>" : null ?>
+               </form>
            </div>
         </div>
      </div>
