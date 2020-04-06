@@ -4,7 +4,7 @@ namespace App\Controllers;
 class ControllerCore {
     
     private $dataView = array();
-    private $idleLimit = 60; // seconds
+    private $idleLimit = 600; // seconds
 
     public function __construct() {
         $this->checkIdleness();
@@ -48,7 +48,7 @@ class ControllerCore {
     }
     
     private function checkIdleness() {
-        if (!empty($_SESSION(SESSION_NAME))) {
+        if (!empty($_SESSION[SESSION_NAME])) {
             $idleTime = time() - $_SESSION[LAST_ACCESS];
             
             if ($idleTime > $this->idleLimit) {

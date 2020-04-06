@@ -5,17 +5,10 @@ namespace App\Models;
 class User {
     private $name, $description, $url_image, $email, $github, $dt_birth, $office, $phone, $city, $bio;
     
-    public function __construct(string $name, string $description, string $url_image, string $email, string $github, string $dt_birth, string $office, string $phone, string $city, string $bio) {
+    public function __construct(string $name, string $description, string $email ) {
         $this->name = $name; 
-        $this->description = $description;
-        $this->url_image = $url_image; 
-        $this->email = $email;  
-        $this->github = $github;  
-        $this->dt_birth = $dt_birth; 
-        $this->office = $office;
-        $this->phone = $phone; 
-        $this->city = $city; 
-        $this->bio = $bio;
+        $this->description = $description; 
+        $this->email = $email;
     }
     
     public function getName()
