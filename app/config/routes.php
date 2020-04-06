@@ -9,7 +9,7 @@ $routes[""] = array(
 $routes["login"] = array(
     "rota" => "/login",
     "controller" => "Auth",
-    "metodo" => "login"
+    "metodo" => "signIn"
 );
 
 $routes["profile"] = array(
@@ -21,5 +21,5 @@ $routes["profile"] = array(
 $routes["logout"] = array(
     "rota" => "/logout",
     "controller" => "Auth",
-    "metodo" => "logout"
+    "metodo" => "destroy"
 );
