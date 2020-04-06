@@ -3,9 +3,6 @@ namespace App\Controllers;
 
 class ControllerCore {
     
-    private const SESSION_NAME = 'user';
-    private const LAST_ACCESS = 'last_access';
-    
     private $dataView = array();
     private $idleLimit = 60; // seconds
 
@@ -36,28 +33,28 @@ class ControllerCore {
     
     protected function login($user) {
         session_regenerate_id();
-        $_SESSION[self::SESSION_NAME] = serialize($user);
-        $_SESSION[self::LAST_ACCESS] = time();
+        $_SESSION[SESSION_NAME] = serialize($user);
+        $_SESSION[LAST_ACCESS] = time();
     }
     
     protected function logout() {
-        unset($_SESSION[self::SESSION_NAME]);
-        unset($_SESSION[self::LAST_ACCESS]);
+        unset($_SESSION[SESSION_NAME]);
+        unset($_SESSION[LAST_ACCESS]);
         session_destroy();
     }
     
     protected function isLogged() {
-        return isset($_SESSION[self::SESSION_NAME]) ? true : false;
+        return isset($_SESSION[SESSION_NAME]) ? true : false;
     }
     
     private function checkIdleness() {
-        if (!empty($_SESSION(self::SESSION_NAME))) {
-            $idleTime = time() - $_SESSION[self::LAST_ACCESS];
+        if (!empty($_SESSION(SESSION_NAME))) {
+            $idleTime = time() - $_SESSION[LAST_ACCESS];
             
             if ($idleTime > $this->idleLimit) {
                 $this->logout();
             } else {
-                $_SESSION[self::LAST_ACCESS] = time();
+                $_SESSION[LAST_ACCESS] = time();
             }
         }
     }
