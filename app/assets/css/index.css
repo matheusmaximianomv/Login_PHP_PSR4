@@ -75,3 +75,8 @@ body html .sidenav .main{
     background-color: #000 !important;
     color: #fff;
 }
+
+.login-form form .alert {
+    margin-top: 20px;
+    text-align: center;
+}
