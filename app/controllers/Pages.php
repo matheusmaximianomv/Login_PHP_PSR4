@@ -15,8 +15,24 @@ class Pages extends ControllerCore {
         if($this->isLogged()) {
             header("Location:".BASE_URL."/profile");
         } else {
-            $this->addTitlePage("Home");
-            $this->loadView("home");
+            $this->addTitlePage("Home - Login");
+            $this->loadView("/home/head");
+            $this->loadView("/home/body_sidenav");
+            $this->loadView("/home/body_login");
+            $this->loadView("/home/end");
+            // $this->loadView("/home/home");
+        }
+    }
+
+    public function signUp() {
+        if($this->isLogged()) {
+            header("Location:".BASE_URL."/profile");
+        } else {
+            $this->addTitlePage("Home - Registrar");
+            $this->loadView("/home/head");
+            $this->loadView("/home/body_sidenav");
+            $this->loadView("/home/body_register");
+            $this->loadView("/home/end");
         }
     }
 
@@ -38,6 +54,7 @@ class Pages extends ControllerCore {
             $this->addDataView("phone", $user->getPhone());
             $this->addDataView("city", $user->getCity());
             $this->addDataView("bio", $user->getBio());
+            $this->addDataView("isAdmin", $user->getIsAdmin());
 
             $this->loadView("profile");
 
