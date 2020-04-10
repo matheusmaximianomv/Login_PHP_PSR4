@@ -14,9 +14,12 @@
 <body>
     <nav>
         <h1>Suas Informações: </h1>
-        <form action="<?=BASE_URL?>/logout">
-            <button type="submit" >Logout</button>
-        </form>
+        <div>
+            <?=$dataView["isAdmin"] ? "<a href=\"".BASE_URL."/users\"><button type=\"button\" class=\"users\">Usuários</button></a>" : null?>
+            <form action="<?=BASE_URL?>/logout">
+                <button type="submit" >Logout</button>
+            </form>
+        </div>
     </nav>
     <main>
         <section class="info">
@@ -24,7 +27,10 @@
         </section>
         <section class="description">
             <header>
-                <strong><?=$dataView["name"]?></strong>
+                <div>
+                    <strong><?=$dataView["name"]?></strong>
+                    <a href="<?=BASE_URL?>/profile/edit"><img src="https://image.flaticon.com/icons/png/512/61/61456.png" alt="editar" title="Editar" /></a>
+                </div>
                 <p><?=$dataView["description"]?></p>
             </header>
             <article>
