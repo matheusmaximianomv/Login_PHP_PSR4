@@ -1,9 +1,16 @@
 {
+    "name": "atividadefinal",
+    "description": "Projeto Desenvolvido na disciplina de PDSI - III",
     "autoload": {
         "psr-4": {
             "App\\": "app/",
             "App\\Controllers\\": "app/controllers",
-            "App\\Models\\": "app/models"
-        }
+            "App\\Models\\": "app/models",
+            "App\\Models\\BD\\": "app/models/dao",
+            "App\\Config\\": "app/config"
+        },
+        "files": [
+            "app/config/database.php"
+        ]
     }
 }
