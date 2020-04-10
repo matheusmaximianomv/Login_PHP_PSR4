@@ -3,12 +3,13 @@
 namespace App\Models;
 
 class User {
-    private $name, $description, $url_image, $email, $github, $dt_birth, $office, $phone, $city, $bio;
+    private $name, $description, $url_image, $email, $github, $dt_birth, $office, $phone, $city, $bio, $isAdmin;
     
-    public function __construct(string $name, string $description, string $email ) {
+    public function __construct(string $name, string $description, string $email, bool $isAdmin ) {
         $this->name = $name; 
         $this->description = $description; 
         $this->email = $email;
+        $this->isAdmin = $isAdmin;
     }
     
     public function getName()
@@ -199,6 +200,26 @@ class User {
     public function setUrl_image($url_image)
     {
         $this->url_image = $url_image;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of isAdmin
+     */ 
+    public function getIsAdmin()
+    {
+        return $this->isAdmin;
+    }
+
+    /**
+     * Set the value of isAdmin
+     *
+     * @return  self
+     */ 
+    public function setIsAdmin($isAdmin)
+    {
+        $this->isAdmin = $isAdmin;
 
         return $this;
     }
