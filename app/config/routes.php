@@ -12,6 +12,18 @@ $routes["login"] = array(
     "metodo" => "signIn"
 );
 
+$routes["register"] = array(
+    "rota" => "/register",
+    "controller" => "Pages",
+    "metodo" => "signUp"
+);
+
+$routes["signup"] = array(
+    "rota" => "/signup",
+    "controller" => "Register",
+    "metodo" => "store"
+);
+
 $routes["profile"] = array(
     "rota"=>"/profile", 
     "controller"=>"Pages", 
