@@ -54,6 +54,12 @@ $routes["update"] = array(
     "metodo"=>"update"
 );
 
+$routes["destroy"] = array(
+    "rota"=>"/destroy", 
+    "controller"=>"UserController", 
+    "metodo"=>"destroy"
+);
+
 $routes["logout"] = array(
     "rota" => "/logout",
     "controller" => "Auth",

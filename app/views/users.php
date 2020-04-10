@@ -23,7 +23,7 @@
         </div>
     </nav>
     <section>
-        <form action="/users/profile" method="POST">
+        <form action="<?=BASE_URL?>/users/profile" method="POST">
             <div>
                 <input type="text" name="id" placeholder="Pesquisar por id" />
                 <button type="submit"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Magnifying_glass_icon.svg/1200px-Magnifying_glass_icon.svg.png" alt="Pesquisar" title="Pesquisar"></button>     

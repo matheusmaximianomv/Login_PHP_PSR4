@@ -105,7 +105,6 @@ class Pages extends ControllerCore {
             $this->addDataView("isAdmin", $user->getIsAdmin());
 
             $this->loadView("profile-edit");
-
         }
     }
 

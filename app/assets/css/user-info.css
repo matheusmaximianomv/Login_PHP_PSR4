@@ -39,7 +39,7 @@ nav div {
     align-items: center;
 }
   
-button.users {
+button.profile {
     background: #fff;
     color: #000;
     font-weight: bold;
@@ -147,6 +147,11 @@ section.description footer {
 
 .footer form button[type="button"]:hover {
     opacity: 0.8;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
 }
 
 .footer form button[type="submit"] {

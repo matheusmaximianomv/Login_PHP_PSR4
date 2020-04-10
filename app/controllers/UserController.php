@@ -21,13 +21,27 @@ class UserController extends ControllerCore {
             if (!($user->getIsAdmin())) {
                 header("Location:".BASE_URL."/profile"); 
             } else {
-                if (!empty($_POST['name'])) {
-                    $user = (new UserDao())->findId($_POST['name']);
+                if (!empty($_POST['id'])) {
+                    $user = (new UserDao())->findById($_POST['id']);
+
+                    $_SESSION['user_delete'] = $_POST['id'];
     
-                    $this->addTitlePage("Usuários Cadastrados");
-                    $this->addDataView("isAdmin", $user->getIsAdmin());
-                    $this->addDataView("users", $allUser);
-                    $this->loadView("users");
+                    $this->addTitlePage("Profile - ".$user['name']);
+
+                    $this->addDataView("avatar", $user['url_image']);
+                    $this->addDataView("name", $user['name']);
+                    $this->addDataView("description", $user['description']);
+                    $this->addDataView("email", $user['email']);
+                    $this->addDataView("github", $user['github']);
+                    $this->addDataView("office", $user['office']);
+                    $this->addDataView("dt_birth", $user['dt_birth']);
+                    $this->addDataView("phone", $user['phone']);
+                    $this->addDataView("city", $user['city']);
+                    $this->addDataView("bio", $user['bio']);
+
+                    // header("Location:" . BASE_URL . "/users/profile/show");
+                    $this->loadView("user-info");
+
                 }
             }
         }
@@ -93,6 +107,23 @@ class UserController extends ControllerCore {
             } else {
                 $_SESSION[MESSAGE] = "Alguns campos são obrigatórios.";
                 header('Location:'.BASE_URL.'/profile/edit');
+                return;
+            }
+        }
+    }
+
+    public function destroy() {
+        if (!$this->isLogged()) {
+            header('Location:'.BASE_URL);
+        } else {
+
+            $user = unserialize($_SESSION[SESSION_NAME]);
+
+            if ($user->getIsAdmin()) {
+                (new UserDao())->destroy($_SESSION['user_delete']);
+                header('Location:'.BASE_URL.'/users');
+            } else {
+                header('Location:'.BASE_URL.'/users');
                 return;
             }
         }

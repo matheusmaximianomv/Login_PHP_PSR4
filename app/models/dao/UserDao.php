@@ -45,7 +45,7 @@ class UserDao extends Dao {
 
     public function findById($id){
         try {
-            $sql = "SELECT name, description, url_image, github, dt_birth, office, phone, city, bio FROM users WHERE id = :id LIMIT 1";
+            $sql = "SELECT name, description, email, url_image, github, dt_birth, office, phone, city, bio FROM users WHERE id = :id LIMIT 1";
             
             $req = $this->pdo->prepare($sql);
             $req->bindValue(":id", $id);
@@ -136,12 +136,10 @@ class UserDao extends Dao {
             $req->bindValue(":id", $id);
             $req->execute();
 
-            $result = $req->fetch(\PDO::FETCH_ASSOC);
-
-            return $result;
+            return true;
         } catch (\Exception $ex) {
             echo $ex->getMessage();
-            return null;
+            return false;
         }
     }
 
