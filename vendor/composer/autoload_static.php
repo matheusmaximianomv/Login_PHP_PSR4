@@ -6,16 +6,26 @@ namespace Composer\Autoload;
 
 class ComposerStaticInitf7d7d36e7319f33c87c9c03c63b460a9
 {
+    public static $files = array (
+        '0db2351792e72562242729e5ddc0079d' => __DIR__ . '/../..' . '/app/config/database.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'A' => 
         array (
+            'App\\Models\\BD\\' => 14,
             'App\\Models\\' => 11,
             'App\\Controllers\\' => 16,
+            'App\\Config\\' => 11,
             'App\\' => 4,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'App\\Models\\BD\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/models/dao',
+        ),
         'App\\Models\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app/models',
@@ -23,6 +33,10 @@ class ComposerStaticInitf7d7d36e7319f33c87c9c03c63b460a9
         'App\\Controllers\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app/controllers',
+        ),
+        'App\\Config\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/config',
         ),
         'App\\' => 
         array (
