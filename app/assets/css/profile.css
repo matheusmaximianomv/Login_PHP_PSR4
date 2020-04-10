@@ -32,7 +32,24 @@ nav {
   align-items: center;
 }
 
-nav button {
+nav div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button.users {
+  background: #fff;
+  color: #000;
+  font-weight: bold;
+  border: 0;
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 4px;
+}
+
+nav form button {
   background: red;
   color: #fff;
   font-weight: bold;
@@ -43,8 +60,8 @@ nav button {
 }
 
 nav button:hover {
-    opacity: 0.6;
-  }
+  opacity: 0.6;
+}
   
 main {
   background-color: #fff;
@@ -74,7 +91,25 @@ section.description {
   text-align: justify;
 }
 
-section.description header strong {
+section.description header div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+section.description header div img {
+  height: 20px; 
+  width: 20px;
+  border-radius: 2px;
+  padding: 1px;
+}
+
+section.description header div img:hover {
+  cursor: pointer;
+}
+
+section.description header div strong {
   font-size: 25px;
 }
 
