@@ -30,6 +30,30 @@ $routes["profile"] = array(
     "metodo"=>"profile"
 );
 
+$routes["users"] = array(
+    "rota"=>"/users", 
+    "controller"=>"Pages", 
+    "metodo"=>"users"
+);
+
+$routes["profile/edit"] = array(
+    "rota"=>"/profile/edit", 
+    "controller"=>"Pages", 
+    "metodo"=>"profileEdit"
+);
+
+$routes["show"] = array(
+    "rota"=>"/users/profile", 
+    "controller"=>"UserController", 
+    "metodo"=>"show"
+);
+
+$routes["update"] = array(
+    "rota"=>"/update", 
+    "controller"=>"UserController", 
+    "metodo"=>"update"
+);
+
 $routes["logout"] = array(
     "rota" => "/logout",
     "controller" => "Auth",

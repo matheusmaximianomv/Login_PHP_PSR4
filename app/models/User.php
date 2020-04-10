@@ -3,7 +3,7 @@
 namespace App\Models;
 
 class User {
-    private $name, $description, $url_image, $email, $github, $dt_birth, $office, $phone, $city, $bio, $isAdmin;
+    private $id, $name, $description, $url_image, $email, $password, $github, $dt_birth, $office, $phone, $city, $bio, $isAdmin;
     
     public function __construct(string $name, string $description, string $email, bool $isAdmin ) {
         $this->name = $name; 
@@ -220,6 +220,46 @@ class User {
     public function setIsAdmin($isAdmin)
     {
         $this->isAdmin = $isAdmin;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of password
+     */ 
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @return  self
+     */ 
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
 
         return $this;
     }

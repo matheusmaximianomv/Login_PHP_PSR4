@@ -31,6 +31,8 @@ class Auth extends ControllerCore{
                     $user->setPhone($userDao['phone']);
                     $user->setCity($userDao['city']);
                     $user->setBio($userDao['bio']);
+                    $user->setPassword($userDao['password']);
+                    $user->setId($userDao['id']);
 
                     $this->login($user);
                     

@@ -8,9 +8,7 @@ class UserDao extends Dao {
 
     public function login($email, $password) {
         try {
-            $sql = "SELECT 
-                name, description, url_image, github, dt_birth, office, phone, city, bio, isAdmin  
-                FROM users 
+            $sql = "SELECT * FROM users 
                 WHERE email = :email AND password = :password 
                 LIMIT 1";
             
@@ -36,7 +34,7 @@ class UserDao extends Dao {
             $req->bindValue(":email", $emailUser);
             $req->execute();
 
-            $result = $req->fetch(\PDO::FETCH_ASSOC);
+            $result = $req->fetchAll(\PDO::FETCH_ASSOC);
 
             return $result;
         } catch (\Exception $ex) {
@@ -99,7 +97,7 @@ class UserDao extends Dao {
 
     public function update($id, $data) {
         try {
-            $sql = "UPDATE users SET name = :name, description = :description, email = :email, password = :password, url_image = :url_image, github = :github, dt_birth = :dt_birth, office = :office, city = :city, bio = :bio, isAdmin = :isAdmin WHERE id = :id";
+            $sql = "UPDATE users SET name = :name, description = :description, email = :email, password = :password, url_image = :url_image, github = :github, dt_birth = :dt_birth, office = :office, city = :city, bio = :bio WHERE id = :id";
             
             $req = $this->pdo->prepare($sql);
             $req->bindValue(":id", $id);
@@ -113,10 +111,15 @@ class UserDao extends Dao {
             $req->bindValue(":office", $data["office"]);
             $req->bindValue(":city", $data["city"]);
             $req->bindValue(":bio", $data["bio"]);
-            $req->bindValue(":isAdmin", $data["isAdmin"]);
             $req->execute();
 
-            $result = $req->fetch(\PDO::FETCH_ASSOC);
+            $sqlResult = "SELECT * FROM users WHERE id = :id LIMIT 1";
+
+            $reqSelect = $this->pdo->prepare($sqlResult);
+            $reqSelect->bindValue(":id", $id);
+            $reqSelect->execute();
+
+            $result = $reqSelect->fetch(\PDO::FETCH_ASSOC);
 
             return $result;
         } catch (\Exception $ex) {

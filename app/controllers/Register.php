@@ -44,7 +44,7 @@ class Register extends ControllerCore {
                 $newUser = (new UserDao())->create($data);
 
                 if (!empty($newUser)) {
-                    $user = new User($newUser['name'], $newUser['description'], $newUser['email']);
+                    $user = new User($newUser['name'], $newUser['description'], $newUser['email'], $newUser['isAdmin'] ? true : false);
 
                     $user->setUrl_image($newUser['url_image']);
                     $user->setGithub($newUser['github']);

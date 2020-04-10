@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\ControllerCore;
 use App\Models\User;
+use App\Models\BD\UserDao;
 
 class Pages extends ControllerCore {
 
@@ -57,6 +58,53 @@ class Pages extends ControllerCore {
             $this->addDataView("isAdmin", $user->getIsAdmin());
 
             $this->loadView("profile");
+
+        }
+    }
+
+    public function users() {
+        if(!$this->isLogged()) {
+            header("Location:".BASE_URL."/");
+        } else {
+            $user = unserialize($_SESSION["user"]);
+
+            if (!($user->getIsAdmin())) {
+                header("Location:".BASE_URL."/profile"); 
+            } else {
+
+                $allUser = (new UserDao())->findAll($user->getEmail());
+
+                $this->addTitlePage("Usuários Cadastrados");
+                $this->addDataView("isAdmin", $user->getIsAdmin());
+                $this->addDataView("users", $allUser);
+                $this->loadView("users");
+            }
+        }
+    }
+
+    public function profileEdit() {
+        if(!$this->isLogged()) {
+            header("Location:". BASE_URL . "/");
+        } else {
+            $user = unserialize($_SESSION["user"]);
+
+            $this->addTitlePage("Profile - ".$user->getName());
+
+            $this->addDataView("id", $user->getId());
+            $this->addDataView("avatar", $user->getUrl_image());
+            $this->addDataView("name", $user->getName());
+            $this->addDataView("description", $user->getDescription());
+            $this->addDataView("email", $user->getEmail());
+            $this->addDataView("password", $user->getPassword());
+            $this->addDataView("github", $user->getGithub());
+            $this->addDataView("office", $user->getOffice());
+            $this->addDataView("dt_birth", $user->getDt_birth());
+            $this->addDataView("phone", $user->getPhone());
+            $this->addDataView("city", $user->getCity());
+            $this->addDataView("bio", $user->getBio());
+            $this->addDataView("isAdmin", $user->getIsAdmin());
+
+            $this->loadView("profile-edit");
 
         }
     }
