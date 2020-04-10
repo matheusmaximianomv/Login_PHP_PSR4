@@ -33,6 +33,7 @@
                      <input type="password" class="form-control" name="password" placeholder="Password">
                   </div>
                   <button type="submit" class="btn btn-black">Login</button>
+                  <button type="button" class="btn btn-light" style="float: right;"><a style="text-decoration: none; color: #212529" href="/atividade_login/register">Registrar</a></button>
                <?= isset($_SESSION[ERROR]) ? "<div class=\"alert alert-danger\" role=\"alert\">".$_SESSION[ERROR]."</div>" : null ?>
                </form>
            </div>
