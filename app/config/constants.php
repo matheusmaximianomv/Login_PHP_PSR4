@@ -11,8 +11,6 @@ define("SESSION_NAME", "user");
 define("LAST_ACCESS", "last_access");
 
 /* Global Constants Messages */
-define("ERROR", "Error");
-
-/* User Constants */
-define("USER_EMAIL", "matheus@email.com");
-define("USER_PASS", "123456789");
+define("MESSAGE", "message");
+define("ERROR_LOGIN", "error_login");
+define("ERROR_REGISTER", "error_register");
