@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Controllers\ControllerCore;
 use App\Models\User;
+use App\Models\BD\UserDao;
 
 class Auth extends ControllerCore{
 
@@ -18,32 +19,32 @@ class Auth extends ControllerCore{
                 $email = $_POST['email'];
                 $password = $_POST['password'];
 
-                if ($email == USER_EMAIL && $password == USER_PASS) {
+                $userDao = (new UserDao())->login($email, $password);
 
-                    $user = new User("Matheus Maximiano", "Graduando no Curso de Sistemas de Informação na Faculdade Paraíso, cursando o 5º Semestre.", $email);
+                if (!empty($userDao)) {
+                    $user = new User($userDao['name'], $userDao['description'], $email, $userDao['isAdmin']);
 
-                    $user->setUrl_image("https://avatars1.githubusercontent.com/u/44318510?s=460&u=7ebfbdbd878a9cdbb758a36fb81ce4eb919d0f73&v=4");
-                    $user->setGithub("matheusmaximianomv");
-                    $user->setDt_birth("03/03/1999");
-                    $user->setOffice("Desenvolvedor FullStack");
-                    $user->setPhone("(88) 9 8873-9005");
-                    $user->setCity("Juazeiro do Norte");
-                    $user->setBio("\"Esse tem sido um dos meus mantras – foco e simplicidade. Simples pode ser mais difícil de fazer do que complexo; você tem que trabalhar duro para clarear seu pensamento a fim de torná-lo simples.\" - Steve Jobs.");
+                    $user->setUrl_image($userDao['url_image']);
+                    $user->setGithub($userDao['github']);
+                    $user->setDt_birth($userDao['dt_birth']);
+                    $user->setOffice($userDao['office']);
+                    $user->setPhone($userDao['phone']);
+                    $user->setCity($userDao['city']);
+                    $user->setBio($userDao['bio']);
 
                     $this->login($user);
                     
                     header("Location:" . BASE_URL . "/profile");
                     return;
                 } else {
-                    $_SESSION[ERROR] = "Credenciais Inválidas";
+                    $_SESSION[ERROR_LOGIN] = "Credenciais Inválidas";
                     header('Location:'.BASE_URL);
                 }
             } else {
-                $_SESSION[ERROR] = "Todos os campos são obrigatórios";
+                $_SESSION[ERROR_LOGIN] = "Todos os campos são obrigatórios";
                 header('Location:'.BASE_URL);
             }
         }
-        
     }
 
     public function destroy() {
